@@ -1,0 +1,71 @@
+<view class="block">
+  <view class="area_box">
+    <view class="area_name">{{areaName}}</view>
+    <view class="change_box" bindtap="handleChange">
+      切换小区
+      <image class="change_icon" src="../../../images/icon_change.png" mode="heightFix"></image>
+    </view>
+  </view>
+  <view class="dec"></view>
+  <component-pull pull-status="{{pullStatus}}" css-container-style="padding-top: 0rpx; z-index:300;"
+    css-loading-style="transform: translateY(0rpx);">
+    <view class="list_box">
+      <!-- <view class="panel_item" wx:for='{{lists}}' wx:key='index' bindtap="goEventDetail" data-id='{{item.id}}'> -->
+      <block wx:for='{{lists}}' wx:key='index'>
+        <view class="item {{item.onlineStatus===1?'':'disabled'}}"  >
+          <view class="name_box">
+            <view class="name">{{ item.buildingName }}{{ item.unitName }}单元{{ item.locationName }}</view>
+            <view class="status">{{ item.onlineStatusName }}</view>
+          </view>
+          <view class="btn_box">
+            <view class="btn" wx:if="{{item.onlineStatus===1}}" bindtap="handleOpen" data-id='{{item.id}}'>立即开门</view>
+            <view class="disabled_btn" wx:else>立即开门</view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </component-pull>
+  <view class="bottom_btn_box">
+    <component-button size="big" bind:tapevent="handleGoForm" css-style="width:686rpx">
+      添加设备
+    </component-button>
+  </view>
+
+  <component-mask type="maskBg" visiable='{{maskShow}}' animateShow='true' bind:tapevent="handleCloseMask">
+    <view class="select_mask_block">
+      <view class="head_block">
+        <view class="community">
+          当前社区:
+          <view class="community_name">社区名字</view>
+        </view>
+        <view class="area">
+          当前小区:
+          <view class="mask_area_name">小区名</view>
+        </view>
+      </view>
+      <view class="tree_picker_box">
+        <view class="tree_picker_head">
+          <block wx:for="{{treePickerHeadList}}" wx:key='index'>
+            <view class="tab_item" data-id="{{index}}" bindtap="handleSelectPickerHead">
+              {{item.name}}
+              <view class="tab_item_active" wx:if="{{swiperCurrent===index}}"></view>
+            </view>
+          </block>
+        </view>
+
+        <swiper class="tree_picker_swiper" circular='true' current="{{swiperCurrent}}" easing-function='linear'
+          duration="500" bindchange="handleSwiperChange">
+          <swiper-item wx:for="{{swiperList}}" wx:key="index">
+            <view class="tree_picker_swiper_item" wx:for="{{item}}" wx:key='id' wx:for-item="ite">
+              <view class="swiper_item_li {{ite.id===swiperItemLiActive?'swiper_item_li_active':''}}"
+                bindtap="handleSelectComArea" data-id="{{ite.id}}">
+                {{ite.name}}
+              </view>
+            </view>
+          </swiper-item>
+        </swiper>
+
+      </view>
+    </view>
+  </component-mask>
+</view>

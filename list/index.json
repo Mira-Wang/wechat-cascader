@@ -1,0 +1,18 @@
+{
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTextStyle": "black",
+  "navigationBarTitleText": "门禁管理",
+  "backgroundColor": "#fff",
+  "backgroundColorTop": "#fff",
+  "backgroundColorBottom": "#fff",
+  "enablePullDownRefresh": true,
+  "onReachBottomDistance": 50,
+  "usingComponents": {
+    "component-list": "../../../components/component-list/list",
+    "component-tab": "../../../components/component-tab/tab",
+    "component-input": "../../../components/component-input/input",
+    "component-pull": "../../../components/component-pull/pull",
+    "component-button": "../../../components/component-button/button",
+    "component-mask": "../../../components/component-mask/mask"
+  }
+}
